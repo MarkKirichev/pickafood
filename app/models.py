@@ -95,6 +95,7 @@ class MenuItem(models.Model):
     image = models.ImageField(upload_to=upload_menu_image_destination, blank=True, null=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     is_active = models.BooleanField(default=False)
+    is_healthy = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
