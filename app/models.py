@@ -56,11 +56,11 @@ class OpeningHours(models.Model):
 
 
 def upload_menu_image_destination(instance, filename):
-    return '{0}/menu_images/{1}'.format(instance.restaurant.name, filename)
+    return f'{instance.restaurant.name}/menu_images/{filename}'
 
 
 def upload_cover_image_to(instance, filename):
-    return '{0}/menu_images/{1}'.format(instance.name, filename)
+    return f'{instance.name}/menu_images/{filename}'
 
 
 class Restaurant(models.Model):
