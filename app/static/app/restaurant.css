@@ -1,0 +1,114 @@
+#restaurant-cover{
+    background-size: cover;
+    height: 100%;
+    margin-bottom: 0;
+}
+
+#restaurant-cover h1, #restaurant-cover p{
+    background: rgba(237, 36, 36,.75);
+    color: white;
+    box-shadow: 8px 0 0 rgba(237, 36, 36,.75), -8px 0 0 rgba(237, 36, 36,.75);
+    padding: 4px;
+}
+
+/* change the background color */
+#info-nav {
+    background-color: rgba(237, 36, 36);
+    margin-bottom: 4px;
+}
+/* change the brand and text color */
+#info-nav .navbar-brand,
+#info-nav .navbar-text {
+    color: rgba(255,255,255);
+}
+/* change the link color */
+#info-nav .nav-link {
+    color: rgba(255,255,255);
+}
+/* change the color of active or hovered links */
+#info-nav .nav-item .nav-link.active,
+#info-nav .nav-item:focus .nav-link,
+#info-nav .nav-item:hover .nav-link {
+    color: #ffffff;
+}
+
+#info-nav .dropdown-item:active {
+    background-color: rgba(237, 36, 36);
+}
+
+.menu-item span.tag {
+    color: #fff;
+    background-color: rgba(237, 36, 36, .75);
+    height: 24px;
+    padding: 0 16px;
+    position: absolute;
+    z-index: 3;
+    top: 16px;
+    left: 0;
+    line-height: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+}
+
+.category {
+    border-bottom: 3px solid rgb(237, 36, 36);
+}
+
+.hidden-modal-body {
+    display: none;
+}
+
+/* Cart Modal CSS */
+div.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+div.cart-item > div{
+    margin-right: auto;
+    margin-left: auto
+}
+div.cart-item-qty {
+    font-size: 0.8rem;
+    /* margin-right: 20px; */
+    width: 20px;
+    display: inline-block;
+}
+div.cart-item-name {
+    font-size: 0.9rem;
+    width: 40%;
+    word-break: break-word;
+    display: inline-block;
+}
+div.cart-item-price {
+    font-size: 0.8rem; 
+    display: inline-block;
+    width: 30px;
+}
+div.cart-item-del-button {
+    display: inline-block;
+}
+div.cart-item-qty-buttons {
+    display: inline-block;
+    /* margin-right: 20px; */
+}
+div.cart-item-del-button .btn-sm{
+    font-size: 0.75rem;
+}
+div.cart-item-qty-buttons .btn-sm{
+    font-size: 0.65rem;
+}
+
+h5.modal-total {
+    text-align: right;
+}
+
+div.cart-btn-wrapper {
+ text-align: right;
+}
+
+div.menu-item > img {
+    width: 100%; 
+    display: block;
+}
