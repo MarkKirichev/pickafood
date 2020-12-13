@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block content %}
+    <div>
+        <div>
+            <img src="{{ user.profile.image.url }}">
+            <h2> {{ user.username }}</h2>
+            <p> {{ user.email }}</p>
+        </div>>
+    </div>
+{% endblock content %}
+
+</body>
+</html>

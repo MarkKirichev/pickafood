@@ -134,3 +134,4 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'http://127.0.0.1:8080'
+LOGIN_URL = 'login'
