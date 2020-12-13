@@ -3,7 +3,7 @@ $(function () {
   // create "js class" called cart with functions addItem and etc that manages the cart
   // and instantiate it with new
 
-  var cart = {
+  let cart = {
     items: {},
     restaurant: null,
     total: 0.0
@@ -17,7 +17,7 @@ $(function () {
     saveCart()
   } else {
     cart = JSON.parse(localStorage.getItem('cart'))
-    for (var itemId in cart.items) {
+    for (let itemId in cart.items) {
       if (cart.items.hasOwnProperty(itemId)) {
         createUIItem(itemId)
       }
@@ -168,7 +168,7 @@ $(function () {
 
   function deleteItem (itemId) {
     delete cart.items[itemId]
-    var cartItemDiv = $('div.cart-item :input[class="cart-item-id"]').filter(function () {
+    let cartItemDiv = $('div.cart-item :input[class="cart-item-id"]').filter(function () {
       return this.value === itemId
     }).parents('div.cart-item')[0]
     cartItemDiv.remove()
