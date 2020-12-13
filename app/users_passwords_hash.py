@@ -13,6 +13,9 @@ def check_password(hashed_password, user_password):
     return password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest()
 
 
+'''
+# Sample Testing Code
+
 new_pass = input('Please enter a password: ')
 hashed_password = hash_password(new_pass)
 print('The string to store in the db is: ' + hashed_password)
@@ -21,3 +24,4 @@ if check_password(hashed_password, old_pass):
     print('You entered the right password')
 else:
     print('I am sorry but the password does not match')
+'''
