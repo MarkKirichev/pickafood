@@ -16,9 +16,10 @@ class Profile(models.Model):
 
         # not that I couldn't write it as 512 - but at least have something that resembles an algorithm...
         RESIZE_VALUE = 1 << 9
+        IMG_PATH = self.image.path
 
-        img = Image.open(self.image.path)
+        img = Image.open(IMG_PATH)
         if img.height > RESIZE_VALUE or img.width > RESIZE_VALUE:
             output_size = (RESIZE_VALUE, RESIZE_VALUE)
             img.thumbnail(output_size)
-            img.save()
+            img.save(IMG_PATH)
