@@ -1,12 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from .restaurants_names import RESTAURANT_NAMES
 
 
 class Profile(models.Model):
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+
+    @property
+    def is_restaurant_admin_profile(self):
+        for item in RESTAURANT_NAMES:
+            if not self.user.email.__str__().find(item) == -1:
+                is_restaurant_admin_profile = item
+                # print(self.user.email.__str__(), is_admin_profile)
+                return is_restaurant_admin_profile
+        return ''
 
     def __str__(self):
         return f'{self.user.username} Profile'
