@@ -1,0 +1,20 @@
+{% extends 'users/profile.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block restaurant_admins %}
+    {% if user.is_restaurant_admin_profile %}
+        <!-- TODO: add all the orders for this restaurant and the users that made them -->
+    {% else %}
+        <!-- TODO: add all the orders this user made -->
+    {% endif %}
+{% endblock restaurant_admins %}
+
+</body>
+</html>

@@ -18,11 +18,8 @@
         </div>>
 
         <div>
-            {% if user.profile.is_restaurant_admin_profile %}
-                <h2> It works! </h2>
-            {% else %}
-                <h2> It still works! </h2>>
-            {% endif %}
+            {% block restaurant_admins %}
+            {% endblock restaurant_admins %}
         </div>
 
         <form method="POST" enctype="multipart/form-data">
