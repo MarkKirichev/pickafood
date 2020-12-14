@@ -190,7 +190,7 @@
                       <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Въведете електронна поща">
                       <small id="emailHelp" class="form-text text-muted">Не бихме споделили електронната Ви поща с друг!</small>
                     </div>
-                    <button type="submit" class="btn btn-outline-danger">Потвърди резервацията</button>
+                    <button id="confirmReservation" type="submit" class="btn btn-outline-danger">Потвърди резервацията</button>
                   </form>
             </div>
             <!-- End of reservation step -->
@@ -231,4 +231,12 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6UWFaVpjEQF0fGmZ2W0oAQ3Q
 
 <script src="{% static 'app/restaurant.js' %}"></script>
 <script src="{% static 'app/cart.js' %}"></script>
+
+<script>
+    $('#toBookingInfo').on('click', function() {
+        let data = localStorage.getItem('cart')
+        $("#data").val(data)
+    })
+</script>
+
 {% endblock additional_footer %}

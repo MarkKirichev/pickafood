@@ -50,3 +50,18 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
+
+
+'''
+@login.required
+def order_create(request):
+    if request.method == 'POST':
+        form = CreateOrderForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit = False)
+            instance.user_order = request.user.profile
+            return redirect('restaurant')
+    else:
+        form = CreateOrderForm()
+    return render(request, 'index', {'form': form})
+'''

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from users.models import Profile
 
 # WEEKDAYS = [
 #     (1, _("Monday")),
@@ -96,6 +97,7 @@ class MenuItem(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     is_active = models.BooleanField(default=False)
     is_healthy = models.BooleanField(default=False)
+    user_order = models.ForeignKey(Profile, default=None, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.name

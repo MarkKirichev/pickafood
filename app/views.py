@@ -6,8 +6,7 @@ from django.template import loader
 
 
 def index(request):
-    template = loader.get_template('app/index.html')
-    return HttpResponse(template.render())
+    return render(request, 'app/index.html')
 
 
 def restaurant(request, restaurant_id):
