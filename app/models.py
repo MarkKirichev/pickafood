@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from users.models import Profile
+from .validators import phone_regex
+from .custom_fields import ListField
 
 # WEEKDAYS = [
 #     (1, _("Monday")),
@@ -87,6 +89,21 @@ class Restaurant(models.Model):
         return Category.objects.filter(pk__in=cat_ids)
 
 
+class Order(models.Model):
+    # TODO: handle ListField Problem
+    date = models.DateField()
+    time = models.TimeField()
+    number_of_people = models.IntegerField()
+    name = models.CharField(max_length=150)
+    telephone_number = models.CharField(validators=[phone_regex],
+                                        max_length=17,
+                                        blank=True)
+    email = models.EmailField()
+
+    order_restaurant = models.ForeignKey(Restaurant, on_delete=models.DO_NOTHING)
+    order_profile = models.ForeignKey(Profile, on_delete=models.DO_NOTHING)
+
+
 # TODO: Add options like (big pizza) +2.34, (whole grain) +1.22
 class MenuItem(models.Model):
     name = models.CharField(max_length=255)
@@ -97,7 +114,15 @@ class MenuItem(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     is_active = models.BooleanField(default=False)
     is_healthy = models.BooleanField(default=False)
-    user_order = models.ForeignKey(Profile, default=None, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.name
+
+
+class OrderItem(models.Model):
+    name = models.ForeignKey(MenuItem, on_delete=models.DO_NOTHING)
+    user_order = models.ForeignKey(Order, on_delete=models.DO_NOTHING)
+    number_ordered = models.IntegerField()
+
+    def __str__(self):
+        return f'Product: {self.name}, Number: {str(self.number_ordered)}'

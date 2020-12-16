@@ -4,38 +4,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-
 {% block content %}
-    <div>
-        <div>
-            <img src="{{ user.profile.image.url }}">
-            <h2> {{ user.username }}</h2>
-            <p> {{ user.email }}</p>
-        </div>>
+    <div
+            class="d-flex flex-row flex-wrap justify-content-center"
+            style="height: 89.5vh"
+    >
+        <div class="d-flex flex-column" style="position: relative">
+            <div
+                    style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f8f9fa !important;
+            padding: 10px;
+            box-sizing: border-box;
+            height: 100%;
+          "
+            >
+                <div
+                        style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              background-color: #f8f9fa !important;
+            "
+                >
+                    <img
+                            src="{{ user.profile.image.url }}"
+                            style="border-radius: 50px; width: 50px; height: 50px"
+                    />
+                    <h2>{{ user.username }}</h2>
+                    <p>{{ user.email }}</p>
+                </div>
 
-        <div>
-            {% block restaurant_admins %}
-            {% endblock restaurant_admins %}
-        </div>
+                <div>
+                    {% block restaurant_admins %} {% endblock restaurant_admins %}
+                </div>
 
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset>
-                <legend>Profile Info</legend>
-                {{ user_form|crispy }}
-                {{ profile_form|crispy }}
-            </fieldset>
-            <div>
-                <button type="submit">Update</button>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h3>Profile Info</h3>
+                    <div class="form-group">
+                        {{ user_form|crispy }} {{ profile_form|crispy }}
+                    </div>
+
+                    <div>
+                        <button class="btn btn-success" type="submit">Update</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+        <div class="d-flex flex-column" style="flex: 1">
+            <div class="d-flex flex-wrap">
+                <!-- Template for an order -->
 
+                <div
+                        style="
+              width: 150px;
+              height: 150px;
+              border-radius: 30px;
+              border: 1px solid;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              margin: 20px;
+            "
+                >
+                    <h1>55.55</h1>
+                    <h4>12.12.12</h4>
+                    <a href="#">More details</a>
+                </div>
+            </div>
+        </div>
     </div>
-{% endblock content %}
 
+{% endblock content %}
 </body>
 </html>

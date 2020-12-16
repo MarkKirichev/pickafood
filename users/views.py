@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+
+from app.models import Restaurant
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
@@ -15,7 +17,11 @@ def register(request):
             return redirect('login')
     else:
         form = UserRegisterForm()
-    return render(request, 'users/index.html', {'form': form})
+    return render(request, 'users/index.html',
+                  {
+                      'form': form,
+                      'restaurants': Restaurant.objects.all()
+                  })
 
 
 '''
@@ -43,10 +49,12 @@ def profile(request):
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
+        restaurants = Restaurant.objects.all()
 
     context = {
         'user_form': user_form,
-        'profile_form': profile_form
+        'profile_form': profile_form,
+        'restaurnats': restaurants
     }
 
     return render(request, 'users/profile.html', context)

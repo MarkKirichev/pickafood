@@ -52,7 +52,6 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for restaurant in restaurants %}
-                            <!-- Pass restaurant's id to the href below-->
                             <a class="dropdown-item" href="/restaurant/{{ restaurant.id }}">{{ restaurant.name }}</a>
                             {% endfor %}
                         </div>
