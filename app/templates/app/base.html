@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     {% block title %}
-        <title>Pick a food</title>
+    <title>Pick a food</title>
     {% endblock title %}
     <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> -->
     <link
@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="{% static 'app/main.css' %}"/>
     {% block additional_head %} {% endblock additional_head %}
 </head>
-
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
@@ -44,34 +43,47 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
+                {% if restaurants %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/restaurant/1">Red Hot Pizza</a>
+                    <div class="dropdown">
+                        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Choose a restaurant
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% for restaurant in restaurants %}
+                            <!-- Pass restaurant's id to the href below-->
+                            <a class="dropdown-item" href="/restaurant/{{ restaurant.id }}">{{ restaurant.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/restaurant/2">Selena</a>
-                </li>
-
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile' %}"> Profile </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}"> Log Out </a>
-                    </li>
-                    <li class="nav-item">
-                        <img
-                                class="rounded-circle"
-                                src="{{ user.profile.image.url }}"
-                                style="height: 50px; width: 50px"
-                        />
-                    </li>
                 {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}"> Log In </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'register' %}"> Register </a>
-                    </li>
+                <li class="nav-item">
+                    <btn class="btn disabled">No working restaurants! Come back tomorrow!</btn>
+                </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}"> Profile </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}"> Log Out </a>
+                </li>
+                <li class="nav-item">
+                    <img
+                            class="rounded-circle"
+                            src="{{ user.profile.image.url }}"
+                            style="height: 50px; width: 50px"
+                    />
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}"> Log In </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}"> Register </a>
+                </li>
 
                 {% endif %}
                 </li>
@@ -80,8 +92,7 @@
     </div>
 </nav>
 
-{% block content %}
-{% endblock content %}
+{% block content %} {% endblock content %}
 
 <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"
