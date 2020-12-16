@@ -63,24 +63,9 @@
         <div class="d-flex flex-column" style="flex: 1">
             <div class="d-flex flex-wrap">
                 <!-- Template for an order -->
+            {% block is_admin %}
+            {% endblock is_admin %}
 
-                <div
-                        style="
-              width: 150px;
-              height: 150px;
-              border-radius: 30px;
-              border: 1px solid;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-direction: column;
-              margin: 20px;
-            "
-                >
-                    <h1>55.55</h1>
-                    <h4>12.12.12</h4>
-                    <a href="#">More details</a>
-                </div>
             </div>
         </div>
     </div>

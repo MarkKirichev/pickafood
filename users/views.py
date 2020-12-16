@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
-from app.models import Restaurant
+from app.models import Restaurant, Order, OrderItem
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
@@ -49,16 +49,22 @@ def profile(request):
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
-        restaurants = Restaurant.objects.all()
+
+    restaurants = Restaurant.objects.all()
+    user_order = Order.objects.get(order_profile=request.user.profile)
+    orders = OrderItem.objects.filter(user_order=user_order)
 
     context = {
         'user_form': user_form,
         'profile_form': profile_form,
-        'restaurnats': restaurants
+        'restaurants': restaurants,
+        'orders': orders
     }
 
-    return render(request, 'users/profile.html', context)
-
+    if not request.user.profile.is_restaurant_admin_profile == '':
+        return render(request, 'users/admin_profile.html', context)
+    else:
+        return render(request, 'users/common_profile.html', context)
 
 '''
 @login.required
