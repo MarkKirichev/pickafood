@@ -1,167 +1,252 @@
 {% extends 'app/base.html' %}
 {% load static %}
-
 {% block additional_head %}
-<link rel="stylesheet" href="{% static 'app/gallery.css' %}">
+    <link rel="stylesheet" href="{% static 'app/gallery.css' %}"/>
 {% endblock additional_head %}
-
 {% block content %}
-<div class="container-fluid">
+    <div class="container-fluid">
         <div class="d-flex flex-row flex-wrap justify-content-center">
-            <div class="d-flex flex-column">
-
+            <div class="d-flex flex-column" style="max-height: 800px !important">
                 <div>
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }}">
-                            {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+                    {% if messages %} {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %} {% endif %}
                 </div>
 
                 <div class="item zoom-on-hover">
                     <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=668&q=80">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=668&q=80"
+                        />
                         <span class="description">
-                            <span class="description-heading">Sandwitches</span>
-                            <span class="description-body">Choose among the best sandwitches in Varna</span>
-                        </span>
+            <span class="description-heading">Sandwitches</span>
+            <span class="description-body"
+            >Choose among the best sandwitches in Varna</span
+            >
+          </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
                     <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1502865787650-3f8318917153?auto=format&fit=crop&w=668&q=80">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1502865787650-3f8318917153?auto=format&fit=crop&w=668&q=80"
+                        />
                         <span class="description">
-                            <span class="description-heading">Fruits</span>
-                            <span class="description-body">The freshest fruits right around your corner</span>
-                        </span>
+            <span class="description-heading">Fruits</span>
+            <span class="description-body"
+            >The freshest fruits right around your corner</span
+            >
+          </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
                     <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80"
+                        />
                         <span class="description">
-                            <span class="description-heading">Snacks</span>
-                            <span class="description-body">What could go better with your sunday beer than a snack?</span>
-                        </span>
+            <span class="description-heading">Snacks</span>
+            <span class="description-body"
+            >What could go better with your sunday beer than a snack?</span
+            >
+          </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
                     <a href="#">
-                        <img class="img-fluid image" src="https://www.englishclub.com/images/vocabulary/food/chinese/chinese-food.jpg">
+                        <img
+                                class="img-fluid image"
+                                src="https://www.englishclub.com/images/vocabulary/food/chinese/chinese-food.jpg"
+                        />
                         <span class="description">
-                            <span class="description-heading">Chinese food</span>
-                            <span class="description-body">Suddenly in the mood for something asian? Try the newest Chinese restaurants in your city!</span>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="d-flex flex-column">
-                <div class="item zoom-on-hover">
-                    <a href="#">
-                        <img class="img-fluid image" src="https://images.deliveryhero.io/image/fd-bg/LH/v9kb-hero.jpg?width=668&height=200">
-                        <span class="description">
-                            <span class="description-heading">Pizza</span>
-                            <span class="description-body">You can never get enough of some delicious pizza, right?</span>
-                        </span>
-                    </a>
-                </div>
-                <div class="item zoom-on-hover">
-                    <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1500816558239-6b91f4256ead?auto=format&fit=crop&w=668&q=80">
-                        <span class="description">
-                            <span class="description-heading">Pastry</span>
-                            <span class="description-body">Chabata, baguette, doughnuts, croissant... If it has dough in it: You name it - we've got it!</span>
-                        </span>
-                    </a>
-                </div>
-                <div class="item zoom-on-hover">
-                    <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1505253468034-514d2507d914?auto=format&fit=crop&w=668&q=80">
-                        <span class="description">
-                            <span class="description-heading">Deserts</span>
-                            <span class="description-body">They just go right to your soul, right?</span>
-                        </span>
+            <span class="description-heading">Chinese food</span>
+            <span class="description-body"
+            >Suddenly in the mood for something asian? Try the newest Chinese
+              restaurants in your city!</span
+            >
+          </span>
                     </a>
                 </div>
             </div>
-            
-            <div class="d-flex flex-column">
+
+            <div class="d-flex flex-column" style="max-height: 800px !important">
                 <div class="item zoom-on-hover">
                     <a href="#">
-                        <img class="img-fluid image" src="https://images.deliveryhero.io/image/fd-bg/LH/v9qe-hero.jpg?width=668&height=400">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.deliveryhero.io/image/fd-bg/LH/v9kb-hero.jpg?width=668&height=200"
+                        />
                         <span class="description">
-                            <span class="description-heading">Burgers</span>
-                            <span class="description-body">Beef, chicken, pork, veggie - however you want it, just order some <i>burgers</i>!</span>
-                        </span>
+            <span class="description-heading">Pizza</span>
+            <span class="description-body"
+            >You can never get enough of some delicious pizza, right?</span
+            >
+          </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
                     <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=668&q=80">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1500816558239-6b91f4256ead?auto=format&fit=crop&w=668&q=80"
+                        />
                         <span class="description">
-                            <span class="description-heading">Lorem Ipsum</span>
-                            <span class="description-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                        </span>
+            <span class="description-heading">Pastry</span>
+            <span class="description-body"
+            >Chabata, baguette, doughnuts, croissant... If it has dough in it:
+              You name it - we've got it!</span
+            >
+          </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
                     <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1505253468034-514d2507d914?auto=format&fit=crop&w=668&q=80"
+                        />
                         <span class="description">
-                            <span class="description-heading">Lorem Ipsum</span>
-                            <span class="description-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                        </span>
-                    </a>
-                </div>
-                <div class="item zoom-on-hover">
-                    <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=668&q=80">
-                        <span class="description">
-                            <span class="description-heading">Lorem Ipsum</span>
-                            <span class="description-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                        </span>
+            <span class="description-heading">Deserts</span>
+            <span class="description-body"
+            >They just go right to your soul, right?</span
+            >
+          </span>
                     </a>
                 </div>
             </div>
-            
-            <div class="d-flex flex-column">
+
+            <div class="d-flex flex-column" style="max-height: 800px !important">
                 <div class="item zoom-on-hover">
                     <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1505253468034-514d2507d914?auto=format&fit=crop&w=668&q=80">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.deliveryhero.io/image/fd-bg/LH/v9qe-hero.jpg?width=668&height=400"
+                        />
                         <span class="description">
-                            <span class="description-heading">Lorem Ipsum</span>
-                            <span class="description-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                        </span>
+            <span class="description-heading">Burgers</span>
+            <span class="description-body"
+            >Beef, chicken, pork, veggie - however you want it, just order
+              some <i>burgers</i>!</span
+            >
+          </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
                     <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1502550900787-e956c314a221?auto=format&fit=crop&w=668&q=80">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=668&q=80"
+                        />
                         <span class="description">
-                            <span class="description-heading">Lorem Ipsum</span>
-                            <span class="description-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                        </span>
+            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-body"
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.</span
+            >
+          </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
                     <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80"
+                        />
                         <span class="description">
-                            <span class="description-heading">Lorem Ipsum</span>
-                            <span class="description-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                        </span>
+            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-body"
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.</span
+            >
+          </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
                     <a href="#">
-                        <img class="img-fluid image" src="https://images.unsplash.com/photo-1502550900787-e956c314a221?auto=format&fit=crop&w=668&q=80">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=668&q=80"
+                        />
                         <span class="description">
-                            <span class="description-heading">Lorem Ipsum</span>
-                            <span class="description-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                        </span>
+            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-body"
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.</span
+            >
+          </span>
+                    </a>
+                </div>
+                <div class="item zoom-on-hover">
+                    <a href="#">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1502550900787-e956c314a221?auto=format&fit=crop&w=668&q=80"
+                        />
+                        <span class="description">
+            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-body"
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.</span
+            >
+          </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column" style="max-height: 800px !important">
+                <div class="item zoom-on-hover">
+                    <a href="#">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1505253468034-514d2507d914?auto=format&fit=crop&w=668&q=80"
+                        />
+                        <span class="description">
+            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-body"
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.</span
+            >
+          </span>
+                    </a>
+                </div>
+                <div class="item zoom-on-hover">
+                    <a href="#">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1502550900787-e956c314a221?auto=format&fit=crop&w=668&q=80"
+                        />
+                        <span class="description">
+            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-body"
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.</span
+            >
+          </span>
+                    </a>
+                </div>
+                <div class="item zoom-on-hover">
+                    <a href="#">
+                        <img
+                                class="img-fluid image"
+                                src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80"
+                        />
+                        <span class="description">
+            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-body"
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.</span
+            >
+          </span>
                     </a>
                 </div>
             </div>

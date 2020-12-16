@@ -3,23 +3,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-
 {% load crispy_forms_tags %}
-
 {% block content %}
-    <div class="content-section">
-        <form method="POST">
+    <div class="container">
+        <form>
             {% csrf_token %}
-            <fieldset>
-                <legend>Join Today</legend>
+            <div class="form-group">
+                <div class="d-flex justify-content-center"><h1>Join Today</h1></div>
                 {{ form|crispy }}
-            </fieldset>
-            <div>
-                <button type="submit">Sign Up</button>
+                <button type="submit" class="btn btn-success">Sign Up</button>
             </div>
         </form>
         <div class="border-top pt-3">
@@ -29,6 +25,5 @@
         </div>
     </div>
 {% endblock content %}
-
 </body>
 </html>

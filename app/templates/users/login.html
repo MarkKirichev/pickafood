@@ -3,32 +3,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
 </head>
 <body>
-
-{% load crispy_forms_tags %}
-
-{% block content %}
-    <div class="content-section">
+{% load crispy_forms_tags %} {% block content %}
+    <div class="container">
         <form method="POST">
             {% csrf_token %}
-            <fieldset>
-                <legend>Join Today</legend>
+            <div class="form-group">
+                <div class="d-flex justify-content-center"><h1>Join Today</h1></div>
                 {{ form|crispy }}
-            </fieldset>
+            </div>
             <div>
-                <button type="submit">Sign In</button>
+                <button type="submit" class="btn btn-success">Sign Up</button>
             </div>
         </form>
+        <br/>
         <div class="border-top pt-3">
-            <small>
-                Need An Account? <a href="/register">Sign Up Now</a>
-            </small>
+            <small> Need An Account? <a href="/register">Register Now</a> </small>
         </div>
     </div>
 {% endblock content %}
-
 </body>
 </html>
