@@ -1,5 +1,6 @@
 $(function () {
-    // TODO: open modal on clicking more details
+    // TODO:
+    // open modal on clicking more details
     $(".more").on("click", function () {
         $("#myModal").show()
         $(".modal-body").html("")
@@ -11,13 +12,27 @@ $(function () {
             ) {
             } else {
                 $(".modal-body").append(
-                    <h6>${element.split("-")[0]} X ${element.split("-")[1]}</h6>
+                    `<h6>${element.split("-")[0]} X ${element.split("-")[1]}</h6>`
                 )
             }
         })
     })
 
     $(".close").on("click", function () {
-        $("#myModal").hide()
+        $(".modal").hide()
+    })
+
+    $(".markAsCompleted").on("click", function () {
+        $("#complete").show()
+        $(".delete").attr("data-id", $(this).data("id"))
+    })
+
+    $(".delete").on("click", function () {
+        let id = $(this).data("id")
+        let getUrl = window.location
+        window.location.replace(
+            `${getUrl.protocol + "//" + getUrl.host + "/"} +deleteOrder /${id}`
+        )
+        $(".modal").hide()
     })
 })
