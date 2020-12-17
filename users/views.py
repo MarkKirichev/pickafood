@@ -51,19 +51,26 @@ def profile(request):
         profile_form = ProfileUpdateForm(instance=request.user.profile)
 
     restaurants = Restaurant.objects.all()
-    user_order = Order.objects.get(order_profile=request.user.profile)
-    orders = OrderItem.objects.filter(user_order=user_order)
+    # user_order = Order.objects.get(order_profile=request.user.profile)
 
     context = {
-        'user_form': user_form,
-        'profile_form': profile_form,
-        'restaurants': restaurants,
-        'orders': orders
+          'user_form': user_form,
+          'profile_form': profile_form,
+          'restaurants': restaurants,
     }
 
     if not request.user.profile.is_restaurant_admin_profile == '':
         return render(request, 'users/admin_profile.html', context)
     else:
+        user_order = Order.objects.filter(order_profile=request.user.profile)
+        current = 0
+        for current_order in user_order:
+            orders = [item for item in OrderItem.objects.all() if item.user_order == current_order]
+            current_str = "order_number_" + str(current)
+            context[current_str] = orders
+            current += 1
+            # print(current_str)
+            context['range'] = range(5)
         return render(request, 'users/common_profile.html', context)
 
 '''
