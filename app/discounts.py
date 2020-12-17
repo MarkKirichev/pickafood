@@ -1,4 +1,5 @@
 # every day of the week, there's a different discount
+# TODO: add discounts on various occasions
 
 discounts_by_weekdays = {
     'Monday': 'triple_pizza',
@@ -10,10 +11,8 @@ discounts_by_weekdays = {
 # italian day is when there are 3+ pastas in the user's cart
 # good for you is when the user has selected 5+ 'healthy' foods in their cart
 
-
 discounts_general = {
     'family_pack': 0.2,
     'italian_day': 0.25,
     'good_for_you': 0.15,
 }
-

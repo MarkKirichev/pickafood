@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
-from app.models import Restaurant, Order, OrderItem
+from app.models import Restaurant, Order, OrderItem, MenuItem, Category
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from .additional_functionality import get_restaurant_name
+
+from django.views.generic import ListView
 
 
 def register(request):
@@ -74,3 +76,6 @@ def profile(request):
         context['orders'] = user_order
 
         return render(request, 'users/common_profile.html', context)
+
+
+# TODO: Views for frontpage, sorted by category
