@@ -26,7 +26,7 @@
               box-sizing: border-box;
             "
             >
-                <h1>{{ order.order_restaurant.name }}</h1>
+                <h1>Order made by: {{ order.order_profile.user.username }}</h1>
                 <h4>Order date: {{ order.date }}</h4>
                 <h4>Order time: {{ order.time }}</h4>
                 <a href="#">More details</a>

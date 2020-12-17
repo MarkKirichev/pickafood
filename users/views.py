@@ -5,6 +5,7 @@ from django.contrib import messages
 from app.models import Restaurant, Order, OrderItem
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+from .additional_functionality import get_restaurant_name
 
 
 def register(request):
@@ -60,10 +61,11 @@ def profile(request):
 
     # TODO - add admin logic
     if not request.user.profile.is_restaurant_admin_profile == '':
-        restaurant_orders = Order.objects.filter(order_restaurant=request.user.profile.is_restaurant_admin_profile)
-        current = restaurant_orders.count()
+        restaurant_orders = [item for item in Order.objects.all() if get_restaurant_name(item.order_restaurant.name) == request.user.profile.is_restaurant_admin_profile]
+        current = len(restaurant_orders)
         context['range'] = range(current)
         context['orders'] = restaurant_orders
+
         return render(request, 'users/admin_profile.html', context)
     else:
         user_order = Order.objects.filter(order_profile=request.user.profile)
