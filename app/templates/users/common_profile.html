@@ -8,10 +8,12 @@
 <body>
 
 {% block is_admin %}
-    {% for i in range %}
 
-        <div
-                style="
+    {% if orders %}
+
+        {% for order in orders %}
+            <div
+                    style="
               min-width: 150px;
               min-height: 150px;
               border-radius: 30px;
@@ -24,29 +26,33 @@
               padding: 15px;
               box-sizing: border-box;
             "
-        >
-            <h1>Order</h1>
-            <h4>Order date: 17.12.2020</h4>
-            <a href="#">More details</a>
+            >
+                <!-- <h1>{{ order.order_profile.user.username }}</h1> --->
+                <h4>Order date: {{ order.date }}</h4>
+                <h4>Order time: {{ order.time }}</h4>
+                <a href="#">More details</a>
 
-
-
-            {% for order in order_number_0 %}
-                <div>
-                    <h6 style="
+                {% for ord in order.orderitem_set.all %}
+                    <div>
+                        <h6 style="
                                 width: 130px;
                                 word-wrap: break-word"
-                    >Product:{{ order.name }}</h6>
-                    <h6 style="
+                        >Product:{{ ord.name }}</h6>
+                        <h6 style="
                             width: 130px;
                             word-wrap: break-word;"
-                    >Number:{{ order.number_ordered }}</h6>
-                </div>
-            {% endfor %}
+                        >Number:{{ ord.number_ordered }}</h6>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
 
+    {% else %}
 
-        </div>
-    {% endfor %}
+        <h1>You have not placed any orders yet!</h1>
+
+    {% endif %}
+
 {% endblock is_admin %}
 
 </body>

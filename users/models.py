@@ -20,8 +20,8 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)
 
         # not that I couldn't write it as 512 - but at least have something that resembles an algorithm...
         RESIZE_VALUE = 1 << 9
