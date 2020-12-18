@@ -1,19 +1,11 @@
 {% extends 'app/base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-<h1> IT works! </h1>
+{% block content %}
+    <h1> IT works! </h1>
 
 {% for item in categories %}
     <h1>It works!</h1>
     {{ item.name }}
 {% endfor %}
 
-</body>
-</html>
+{% endblock content %}

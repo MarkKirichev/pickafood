@@ -168,7 +168,7 @@
                             class="total-currency">lv.</span></h5>
                     <hr>
                     <div class="cart-btn-wrapper">
-                        <button id="toBookingInfo" class="btn btn-outline-danger">Продължи</button>
+                        <button id="toBookingInfo" class="btn btn-outline-danger">Continue</button>
                     </div>
                 </div>
                 <!-- Reservation step -->
@@ -203,16 +203,16 @@
                         <div class="form-group">
                             <label for="phoneInput">Telephone</label>
                             <input type="tel" class="form-control" id="phoneInput" aria-describedby="phone"
-                                   placeholder="Въведете телефонен номер">
+                                   placeholder="Enter your telephone number here">
                             <small id="emailHelp" class="form-text text-muted">We wouldn't share your telephone number with anyone</small>
                         </div>
                         <div class="form-group">
                             <label for="emailInput">Email адрес</label>
                             <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
-                                   placeholder="Въведете електронна поща">
+                                   placeholder="Enter your email address here">
                             <small id="emailHelp" class="form-text text-muted">We wouldn't share your email with anyone!</small>
                         </div>
-                        <button id="confirmReservation" type="submit" class="btn btn-outline-danger">Confirm your reservation
+                        <button id="confirmReservation" class="btn btn-outline-danger">Confirm your reservation
                         </button>
                     </form>
                 </div>
@@ -220,9 +220,6 @@
             </div>
         </div>
     </div>
-    <script>
-        console.log(localStorage.getItem('cart'))
-    </script>
 
 {% endblock content %}
 
