@@ -8,9 +8,11 @@
         <div class="d-flex flex-row flex-wrap justify-content-center">
             <div class="d-flex flex-column" style="max-height: 800px !important">
                 <div>
-                    {% if messages %} {% for message in messages %}
+                    {% if messages %}
+                        {% for message in messages %}
                         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-                    {% endfor %} {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
 
                 <div class="item zoom-on-hover">
@@ -252,4 +254,11 @@
             </div>
         </div>
     </div>
+
+    {% for item in categories %}
+
+        <a href="{% url 'category' item.slug %}"> item1 </a>
+
+    {% endfor %}
+
 {% endblock content %}

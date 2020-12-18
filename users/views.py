@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
+from app.forms import RestaurantOrderForm
 from app.models import Restaurant, Order, OrderItem, MenuItem, Category
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
@@ -77,5 +78,13 @@ def profile(request):
 
         return render(request, 'users/common_profile.html', context)
 
+'''
+def create_order(request):
+    if request.method == 'POST':
+        form = RestaurantOrderForm(request.POST)
+        form.
+        if form.is_valid():
+            form.save()
 
+    return redirect('profile')'''
 # TODO: Views for frontpage, sorted by category

@@ -3,240 +3,263 @@
 {% load pickafood_extras %}
 
 {% block additional_head %}
-<link rel="stylesheet" href="{% static 'app/restaurant.css' %}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.date.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.time.css" />
+    <link rel="stylesheet" href="{% static 'app/restaurant.css' %}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.date.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.time.css"/>
 {% endblock additional_head %}
 
 {% block content %}
-<div class="container-fluid">
-    <div id="restaurant-cover" class="jumbotron jumbotron-fluid" style="background-image: url('{{restaurant.cover_image.url}}');">
-        <div class="container">
-            <h1>{{ restaurant.name }}</h1>
-            <p class="lead">{{restaurant.slogan}}</p>
+    <div class="container-fluid">
+        <div id="restaurant-cover" class="jumbotron jumbotron-fluid"
+             style="background-image: url('{{ restaurant.cover_image.url }}');">
+            <div class="container">
+                <h1>{{ restaurant.name }}</h1>
+                <p class="lead">{{ restaurant.slogan }}</p>
+            </div>
         </div>
+        <ul id="info-nav" class="nav justify-content-center">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false">Categories</a>
+                <div class="dropdown-menu">
+                    {% for category in restaurant.categories %}
+                        <a class="dropdown-item" href="#{{ category.name }}-cat">{{ category.name }}</a>
+                    {% endfor %}
+                </div>
+                >
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#locationModal" href="#locationModal">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Location
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#infoModal" href="#infoModal">
+                    <i class="fas fa-info-circle"></i>
+                    Information
+                </a>
+            </li>
+        </ul>
     </div>
-    <ul id="info-nav" class="nav justify-content-center">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Категории</a>
-            <div class="dropdown-menu">
-                {% for category in restaurant.categories %}
-                    <a class="dropdown-item" href="#{{category.name}}-cat">{{category.name}}</a>
-                {% endfor %}
-            </div>>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#locationModal" href="#locationModal">
-                <i class="fas fa-map-marker-alt"></i>
-                Локация
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#infoModal" href="#infoModal">
-                <i class="fas fa-info-circle"></i>
-                Информация
-            </a>
-        </li>
-    </ul>
-</div>
-<div class="container">
-  {% if featured_item %}
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <div id="item-1" class="menu-item card mb-3">
-                    <img class="card-img-top" style="max-height: 225px; width: 100%; display: block;" src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=668&q=80"
-                        alt="Card image cap">
+    <div class="container">
+        {% if featured_item %}
+            <div class="row">
+                <div class="col-md-4 offset-md-4">
+                    <div id="item-1" class="menu-item card mb-3">
+                        <img class="card-img-top" style="max-height: 225px; width: 100%; display: block;"
+                             src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=668&q=80"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title item-name">Foodie food</h5>
+                            <p class="card-text">Tasty food with food and nice foodie food foodster ingrediants like
+                                food foood aaand some foood in it.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-danger add-item"><i
+                                            class="fas fa-plus"></i></button>
+                                </div>
+                                <span>Price: <span class="item-price">2</span> <span
+                                        class="item-currency">USD</span></span>
+                            </div>
+                        </div>
+                        <span class="tag">Featured</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% for category in restaurant.categories %}
+            <h2 id="{{ category.name }}-cat" class="category">{{ category.name }}</h2>
+
+            {% for menu_item in restaurant.menuitem_set|in_category:category %}
+                {% if forloop.first %}
+                    <div class="row">{% endif %}
+            <div class="col-md-4">
+                <div id="item-{{ menu_item.id }}" class="menu-item card mb-3">
+                    <img class="card-img-top" src="{{ menu_item.image.url }}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title item-name">Foodie food</h5>
-                        <p class="card-text">Tasty food with food and nice foodie food foodster ingrediants like food foood aaand some foood in it.</p>
+                        <h5 class="card-title item-name">{{ menu_item.name }}</h5>
+                        <p class="card-text">{{ menu_item.description }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-danger add-item"><i class="fas fa-plus"></i></button>
+                                <button type="button" class="btn btn-sm btn-outline-danger add-item"><i
+                                        class="fas fa-plus"></i></button>
                             </div>
-                            <span>Price: <span class="item-price">2</span> <span class="item-currency">USD</span></span>
+                            <span>Price: <span class="item-price">{{ menu_item.price }}</span> <span
+                                    class="item-currency">lv.</span></span>
                         </div>
                     </div>
-                    <span class="tag">Featured</span>
                 </div>
+            </div>
+            {% if forloop.counter|divisibleby:3 %}</div>
+                <div class="row">{% endif %}
+            {% if forloop.last %}</div>{% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+    </div>
+
+    <!-- Location modal -->
+    <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="locationModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="locationModalCenterTitle">Location</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3>{{ restaurant.address }}</h3>
+                    <!-- <div id="map"></div> -->
+                </div>
+            </div>
         </div>
     </div>
-  {% endif %}
-    {% for category in restaurant.categories %}
-      <h2 id="{{category.name}}-cat" class="category">{{category.name}}</h2>
-      
-      {% for menu_item in restaurant.menuitem_set|in_category:category %}
-          {% if forloop.first %}<div class="row">{% endif %}
-          <div class="col-md-4">
-              <div id="item-{{menu_item.id}}" class="menu-item card mb-3">
-                    <img class="card-img-top" src="{{menu_item.image.url}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title item-name">{{menu_item.name}}</h5>
-                        <p class="card-text">{{menu_item.description}}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-danger add-item"><i class="fas fa-plus"></i></button>
+
+    <!-- Information modal -->
+    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalTitle">Информация</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>Working hours: </h4>
+                    <p>Monday - Friday: 10:00 - 23:00</p>
+                    <p>Saturday: 12:00 - 24:00</p>
+                    <p>Sunday: 12:00 - 24:00</p>
+                    <h5>Paymnet methods: </h5>
+                    <p><i class="fas fa-money-bill-alt"></i> In cash | <i class="far fa-credit-card"></i> Card</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button style="margin: 10px auto 20px auto; width: 200px" class="fixed-bottom btn btn-lg btn-danger"
+            data-toggle="modal" data-target="#bookingModal">
+        Reserve!
+    </button>
+    <!-- Booking modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalTitle">Book a table</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Cart check step -->
+                <div id="cartModalStep" class="modal-body">
+                    <hr>
+                    <h5 class="modal-total">Sum: <span class="total-price">0.00</span><span
+                            class="total-currency">lv.</span></h5>
+                    <hr>
+                    <div class="cart-btn-wrapper">
+                        <button id="toBookingInfo" class="btn btn-outline-danger">Продължи</button>
+                    </div>
+                </div>
+                <!-- Reservation step -->
+                <div id="bookingModalStep" class="modal-body hidden-modal-body">
+                    <h5>Please provide information for the reservation:</h5>
+                    <form>
+                        <div class="form-group">
+                            <label for="dateTimePickers">Date and Time</label>
+                            <div class="input-group" data-target-input="nearest" id="dateTimePickers">
+                                <input type="text" class="form-control" id="datePicker"/>
+                                <div class="input-group-append">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
                             </div>
-                            <span>Цена: <span class="item-price">{{menu_item.price}}</span> <span class="item-currency">лв.</span></span>
                         </div>
-                    </div>
-                </div>
-          </div>
-          {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
-          {% if forloop.last %}</div>{% endif %} 
-      {% endfor %}
-    {% endfor %}
-    </div>
-</div>
-
-<!-- Location modal -->
-<div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="locationModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="locationModalCenterTitle">Локация</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h3>{{restaurant.address}}</h3>
-                <!-- <div id="map"></div> -->
-            </div>
-      </div>
-    </div>
-  </div>
-
-<!-- Information modal -->
-<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="infoModalTitle">Информация</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h4>Работни Часове: </h4>
-                <p>Понеделник-Петък: 10:00 - 23:00</p>
-                <p>Събота: 12:00 - 24:00</p>
-                <p>Неделя: 12:00 - 24:00</p>
-                <h5>Начини за плащане: </h5>
-                <p><i class="fas fa-money-bill-alt"></i> В брой | <i class="far fa-credit-card"></i> Карта</p>
-            </div>
-      </div>
-    </div>
-</div>
-<button style="margin: 10px auto 20px auto; width: 200px" class="fixed-bottom btn btn-lg btn-danger" data-toggle="modal" data-target="#bookingModal">
-    Резервирай!
-</button>
-<!-- Booking modal -->
-<div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="bookingModalTitle">Book a table</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!-- Cart check step -->
-            <div id="cartModalStep" class="modal-body">
-                <hr>
-                <h5 class="modal-total">Общо: <span class="total-price">0.00</span><span class="total-currency">лв.</span></h5>
-                <hr>
-                <div class="cart-btn-wrapper">
-                    <button id="toBookingInfo" class="btn btn-outline-danger">Продължи</button>
-                </div>
-            </div>
-            <!-- Reservation step -->
-            <div id="bookingModalStep" class="modal-body hidden-modal-body">
-                <h5>Моля въведете информация за резервацията:</h5>
-                <form>
-                <div class="form-group">
-                    <label for="dateTimePickers">Дата и час</label>
-                    <div class="input-group" data-target-input="nearest" id="dateTimePickers">
-                        <input type="text" class="form-control" id="datePicker"/>
-                        <div class="input-group-append">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        <div class="form-group">
+                            <div class="input-group" data-target-input="nearest">
+                                <input type="text" class="form-control" id="timePicker"/>
+                                <div class="input-group-append">
+                                    <div class="input-group-text"><i class="fa fa-clock"></i></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group" data-target-input="nearest">
-                        <input type="text" class="form-control" id="timePicker"/>
-                        <div class="input-group-append">
-                            <div class="input-group-text"><i class="fa fa-clock"></i></div>
+                        <div class="form-group">
+                            <label for="peopleNumber">Number of people</label>
+                            <input type="number" class="form-control" id="peopleNumber">
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="names">Name</label>
+                            <input type="text" class="form-control" id="names">
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneInput">Telephone</label>
+                            <input type="tel" class="form-control" id="phoneInput" aria-describedby="phone"
+                                   placeholder="Въведете телефонен номер">
+                            <small id="emailHelp" class="form-text text-muted">We wouldn't share your telephone number with anyone</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailInput">Email адрес</label>
+                            <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
+                                   placeholder="Въведете електронна поща">
+                            <small id="emailHelp" class="form-text text-muted">We wouldn't share your email with anyone!</small>
+                        </div>
+                        <button id="confirmReservation" type="submit" class="btn btn-outline-danger">Confirm your reservation
+                        </button>
+                    </form>
                 </div>
-                    <div class="form-group">
-                        <label for="peopleNumber">Брой хора</label>
-                        <input type="number" class="form-control" id="peopleNumber">
-                    </div>
-                    <div class="form-group">
-                        <label for="names">Име и фамилия</label>
-                        <input type="text" class="form-control" id="names">
-                    </div>
-                    <div class="form-group">
-                        <label for="phoneInput">Телефон</label>
-                        <input type="tel" class="form-control" id="phoneInput" aria-describedby="phone" placeholder="Въведете телефонен номер">
-                      <small id="emailHelp" class="form-text text-muted">Не бихме споделили телефона Ви с друг!</small>
-                    </div>
-                    <div class="form-group">
-                      <label for="emailInput">Email адрес</label>
-                      <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Въведете електронна поща">
-                      <small id="emailHelp" class="form-text text-muted">Не бихме споделили електронната Ви поща с друг!</small>
-                    </div>
-                    <button id="confirmReservation" type="submit" class="btn btn-outline-danger">Потвърди резервацията</button>
-                  </form>
+                <!-- End of reservation step -->
             </div>
-            <!-- End of reservation step -->
-      </div>
+        </div>
     </div>
-</div>
     <script>
-    console.log(localStorage.getItem('cart'))
+        console.log(localStorage.getItem('cart'))
     </script>
 
 {% endblock content %}
 
 
 {% block additional_footer %}
-<!-- <style>
-    #map {
-  height: 400px;  /* The height is 400 pixels */
-  width: 100%;  /* The width is the width of the web page */
- }
-</style> -->
-<!-- <script>
-    function initMap() {
-    // The location of Uluru
-    var location = {lat: 43.219172, lng: 27.919179};
-     // The map, centered at Uluru
-    var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 16, center: location});
-  // The marker, positioned at Uluru
-  var marker = new google.maps.Marker({position: location, map: map});
-}
-</script> -->
-<!-- <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6UWFaVpjEQF0fGmZ2W0oAQ3QduCaeZc0&callback=initMap">
-</script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
+    <!-- <style>
+        #map {
+      height: 400px;  /* The height is 400 pixels */
+      width: 100%;  /* The width is the width of the web page */
+     }
+    </style> -->
+    <!-- <script>
+        function initMap() {
+        // The location of Uluru
+        var location = {lat: 43.219172, lng: 27.919179};
+         // The map, centered at Uluru
+        var map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 16, center: location});
+      // The marker, positioned at Uluru
+      var marker = new google.maps.Marker({position: location, map: map});
+    }
+    </script> -->
+    <!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6UWFaVpjEQF0fGmZ2W0oAQ3QduCaeZc0&callback=initMap">
+    </script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
 
-<script src="{% static 'app/restaurant.js' %}"></script>
-<script src="{% static 'app/cart.js' %}"></script>
+    <script src="{% static 'app/restaurant.js' %}"></script>
+    <script src="{% static 'app/cart.js' %}"></script>
 
-<script>
-    $('#toBookingInfo').on('click', function() {
-        let data = localStorage.getItem('cart')
-        $("#data").val(data)
-    })
-</script>
+    <script>
+        $('#toBookingInfo').on('click', function () {
+            let data = localStorage.getItem('cart')
+            $("#data").val(data)
+        })
+    </script>
 
 {% endblock additional_footer %}

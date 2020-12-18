@@ -31,7 +31,7 @@ $(function () {
         let id = $(this).data("id")
         let getUrl = window.location
         window.location.replace(
-            `${getUrl.protocol + "//" + getUrl.host + "/"} +deleteOrder /${id}`
+            `${getUrl.protocol + "//" + getUrl.host + "/"}+deleteOrder/${id}`
         )
         $(".modal").hide()
     })
