@@ -1,8 +1,4 @@
 $(function () {
-    // TODO:
-    // create "js class" called cart with functions addItem and etc that manages the cart
-    // and instantiate it with new
-
     let cart;
 
     function clearCart() {
@@ -153,11 +149,11 @@ $(function () {
     }
 
     function addItem(target) {
-        var itemDiv = $(target).parents('div.menu-item')[0]
-        var itemId = itemDiv.id
-        var itemName = $(itemDiv).find('.item-name')[0].textContent
-        var itemPrice = parseFloat($(itemDiv).find('.item-price')[0].textContent)
-        var itemCurrency = $(itemDiv).find('.item-currency')[0].textContent
+        let itemDiv = $(target).parents('div.menu-item')[0]
+        let itemId = itemDiv.id
+        let itemName = $(itemDiv).find('.item-name')[0].textContent
+        let itemPrice = parseFloat($(itemDiv).find('.item-price')[0].textContent)
+        let itemCurrency = $(itemDiv).find('.item-currency')[0].textContent
         if (cart.items.hasOwnProperty(itemId)) {
             increaseItemQty(itemId)
         } else {
@@ -189,17 +185,17 @@ $(function () {
 
     // Cart buttons
     $('div#cartModalStep').on('click', '.plus-qty-btn', function (e) {
-        var itemId = $(e.target).parents('div.cart-item').find('input.cart-item-id').val()
+        let itemId = $(e.target).parents('div.cart-item').find('input.cart-item-id').val()
         increaseItemQty(itemId)
     })
 
     $('div#cartModalStep').on('click', '.minus-qty-btn', function (e) {
-        var itemId = $(e.target).parents('div.cart-item').find('input.cart-item-id').val()
+        let itemId = $(e.target).parents('div.cart-item').find('input.cart-item-id').val()
         decreaseItemQty(itemId)
     })
 
     $('div#cartModalStep').on('click', '.del-item-btn', function (e) {
-        var itemId = $(e.target).parents('div.cart-item').find('input.cart-item-id').val()
+        let itemId = $(e.target).parents('div.cart-item').find('input.cart-item-id').val()
         deleteItem(itemId)
     })
 })

@@ -37,6 +37,9 @@
                         >Number:{{ ord.number_ordered }}</h6>
                     </div>
                 {% endfor %}
+                <button class="btn btn-danger" href="removeOrder/{{ order.id }}">
+                    Remove Order
+                </button>
             </div>
         {% endfor %}
 

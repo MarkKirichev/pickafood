@@ -28,6 +28,7 @@ WEEKDAYS = [
 class Category(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField()
+    image = models.ImageField(default='default.jpg', upload_to='category_images')
 
     def __str__(self):
         return self.name
