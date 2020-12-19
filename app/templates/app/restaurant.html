@@ -15,6 +15,15 @@
 {% endblock additional_head %}
 
 {% block content %}
+    <script>
+        let restaurant = "{{restaurant}}";
+        let user = "{{ user }}";
+        document.addEventListener('load', function () {
+            $('#button').attr('data-restaurant', restaurant);
+            $('#button').attr('data-user', user);
+
+        })
+    </script>
     <div class="container-fluid">
         <div id="restaurant-cover" class="jumbotron jumbotron-fluid"
              style="background-image: url('{{ restaurant.cover_image.url }}');">
@@ -32,7 +41,6 @@
                         <a class="dropdown-item" href="#{{ category.name }}-cat">{{ category.name }}</a>
                     {% endfor %}
                 </div>
-                >
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#locationModal" href="#locationModal">
@@ -146,10 +154,19 @@
             </div>
         </div>
     </div>
-    <button style="margin: 10px auto 20px auto; width: 200px" class="fixed-bottom btn btn-lg btn-danger"
-            data-toggle="modal" data-target="#bookingModal">
-        Reserve!
-    </button>
+
+    {% if user.is_authenticated %}
+        <button style="margin: 10px auto 20px auto; width: 200px" class="fixed-bottom btn btn-lg btn-danger"
+                data-toggle="modal" data-target="#bookingModal" id="button">
+            Reserve!
+        </button>
+    {% else %}
+        <button style="margin: 10px auto 20px auto; width: 200px" class="fixed-bottom btn btn-lg btn-danger disabled"
+                data-toggle="modal" data-target="#bookingModal" id="button" disabled>
+            Reserve!
+        </button>
+    {% endif %}
+
     <!-- Booking modal -->
     <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalTitle"
          aria-hidden="true">
@@ -204,13 +221,15 @@
                             <label for="phoneInput">Telephone</label>
                             <input type="tel" class="form-control" id="phoneInput" aria-describedby="phone"
                                    placeholder="Enter your telephone number here">
-                            <small id="emailHelp" class="form-text text-muted">We wouldn't share your telephone number with anyone</small>
+                            <small id="emailHelp" class="form-text text-muted">We wouldn't share your telephone number
+                                with anyone</small>
                         </div>
                         <div class="form-group">
                             <label for="emailInput">Email адрес</label>
                             <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
                                    placeholder="Enter your email address here">
-                            <small id="emailHelp" class="form-text text-muted">We wouldn't share your email with anyone!</small>
+                            <small id="emailHelp" class="form-text text-muted">We wouldn't share your email with
+                                anyone!</small>
                         </div>
                         <button id="confirmReservation" class="btn btn-outline-danger">Confirm your reservation
                         </button>
@@ -220,6 +239,16 @@
             </div>
         </div>
     </div>
+
+    <script src="{% static 'app/restaurant.js' %}"></script>
+    <script src="{% static 'app/cart.js' %}"></script>
+
+    <script>
+        $('#toBookingInfo').on('click', function () {
+            let data = localStorage.getItem('cart')
+            $("#data").val(data)
+        })
+    </script>
 
 {% endblock content %}
 

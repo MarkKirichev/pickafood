@@ -44,14 +44,14 @@ def orderItem(request, pk):
 
 
 def category(request, slug):
-    slug_category_items = MenuItem.objects.filter(category__slug=slug)
+    menu_items_per_category = MenuItem.objects.filter(category__slug=slug)
     try:
         category = Category.objects.get(slug=slug)
     except:
         raise Http404("Category does not exist")
 
     context = {
-        'categories': slug_category_items,
+        'categories': menu_items_per_category,
         'restaurants': Restaurant.objects.all(),
         'category': category
     }
@@ -62,6 +62,7 @@ def category(request, slug):
 def order(request):
     if request.method == 'POST':
         json_data = json.loads(request.body)
+        print(json_data)
         redirect('profile')
         '''check = check_for_everything(json_data)
         if check:
