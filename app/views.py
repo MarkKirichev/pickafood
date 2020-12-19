@@ -45,12 +45,16 @@ def orderItem(request, pk):
 
 def category(request, slug):
     slug_category_items = MenuItem.objects.filter(category__slug=slug)
+    try:
+        category = Category.objects.get(slug=slug)
+    except:
+        raise Http404("Category does not exist")
+
     context = {
         'categories': slug_category_items,
         'restaurants': Restaurant.objects.all(),
+        'category': category
     }
-
-    [print(item) for item in context['categories']]
 
     return render(request, 'app/category.html', context)
 
