@@ -15,15 +15,6 @@
 {% endblock additional_head %}
 
 {% block content %}
-    <script>
-        let restaurant = "{{restaurant}}";
-        let user = "{{ user }}";
-        document.addEventListener('load', function () {
-            $('#button').attr('data-restaurant', restaurant);
-            $('#button').attr('data-user', user);
-
-        })
-    </script>
     <div class="container-fluid">
         <div id="restaurant-cover" class="jumbotron jumbotron-fluid"
              style="background-image: url('{{ restaurant.cover_image.url }}');">
@@ -167,6 +158,12 @@
         </button>
     {% endif %}
 
+    <!-- Alert -->
+    <div class="alert alert-success" role="alert" id="success"
+         style="display: none; position: fixed; bottom: 1%; right: 1%">
+        You've successfully added a new item!
+    </div>
+
     <!-- Booking modal -->
     <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalTitle"
          aria-hidden="true">
@@ -240,15 +237,68 @@
         </div>
     </div>
 
-    <script src="{% static 'app/restaurant.js' %}"></script>
-    <script src="{% static 'app/cart.js' %}"></script>
-
     <script>
         $('#toBookingInfo').on('click', function () {
             let data = localStorage.getItem('cart')
             $("#data").val(data)
         })
     </script>
+
+
+    <script src="{% static 'app/cart.js' %}"></script>
+
+    <script>
+        $('#confirmReservation').on('click', function () {
+
+            let date = $('#datePicker').val()
+            let time = $('#timePicker').val()
+            let peopleNumber = $('#peopleNumber').val()
+            let names = $('#names').val()
+            let phoneInput = $('#phoneInput').val()
+            let emailInput = $('#emailInput').val()
+
+            let restaurant = "{{restaurant}}";
+            let user = "{{ user }}";
+
+            let cart = JSON.parse(localStorage.getItem('cart'))
+            let data = {
+                date,
+                time,
+                peopleNumber,
+                names,
+                phoneInput,
+                emailInput,
+                cart,
+                restaurant,
+                user
+            }
+
+            const headers = {
+                'content-type': 'application/json',
+                'X-CSRFToken': Cookies.get('csrftoken'),
+            };
+
+            $.ajax({
+                url: '/order',
+                type: 'post',
+                data: JSON.stringify(data),
+                headers: headers,
+                success: function () {
+                    // Show a success modal. Clear cart and input fields
+                    alert('We did it bro!')
+                }
+            });
+        })
+
+        $('.add-item').click(function () {
+            $('#success').show()
+            setTimeout(function () {
+                $('#success').hide()
+            }, 5000)
+        })
+    </script>
+
+    <script src="{% static 'app/restaurant.js' %}"></script>
 
 {% endblock content %}
 
@@ -277,15 +327,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
-
-    <script src="{% static 'app/restaurant.js' %}"></script>
-    <script src="{% static 'app/cart.js' %}"></script>
-
-    <script>
-        $('#toBookingInfo').on('click', function () {
-            let data = localStorage.getItem('cart')
-            $("#data").val(data)
-        })
-    </script>
 
 {% endblock additional_footer %}

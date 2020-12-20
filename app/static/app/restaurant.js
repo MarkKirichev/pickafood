@@ -59,9 +59,6 @@ $(function () {
         $('#cartModalStep').addClass('hidden-modal-body')
         $('#bookingModalStep').removeClass('hidden-modal-body')
     })
-    $('#confirmReservation').click(function () {
-        createOrder()
-    })
 
     $('#btnEndStep2').click(function () {
         $('#step2').addClass('hideMe')

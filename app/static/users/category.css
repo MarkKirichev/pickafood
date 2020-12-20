@@ -1,0 +1,24 @@
+.card {
+    width: 30vw !important;
+    margin: 3vh 1vw;
+}
+
+.subnav {
+    height: 10vh;
+    width: 100vw;
+    max-width: 100%;
+    background-color: lightgrey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.subnav > h3 {
+    margin: 0px 15px;
+}
+
+.card-img-top {
+    max-height: 500px !important;
+    min-height: 300px !important;
+}

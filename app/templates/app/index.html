@@ -1,18 +1,13 @@
-{% extends 'app/base.html' %}
-{% load static %}
-{% block additional_head %}
+{% extends 'app/base.html' %} {% load static %} {% block additional_head %}
     <link rel="stylesheet" href="{% static 'app/gallery.css' %}"/>
-{% endblock additional_head %}
-{% block content %}
+{% endblock additional_head %} {% block content %}
     <div class="container-fluid">
         <div class="d-flex flex-row flex-wrap justify-content-center">
             <div class="d-flex flex-column" style="max-height: 800px !important">
                 <div>
-                    {% if messages %}
-                        {% for message in messages %}
+                    {% if messages %} {% for message in messages %}
                         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-                        {% endfor %}
-                    {% endif %}
+                    {% endfor %} {% endif %}
                 </div>
 
                 <div class="item zoom-on-hover">
@@ -76,7 +71,7 @@
 
             <div class="d-flex flex-column" style="max-height: 800px !important">
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/pizzas/">
                         <img
                                 class="img-fluid image"
                                 src="https://images.deliveryhero.io/image/fd-bg/LH/v9kb-hero.jpg?width=668&height=200"
@@ -122,7 +117,7 @@
 
             <div class="d-flex flex-column" style="max-height: 800px !important">
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/burgers/">
                         <img
                                 class="img-fluid image"
                                 src="https://images.deliveryhero.io/image/fd-bg/LH/v9qe-hero.jpg?width=668&height=400"
@@ -255,10 +250,26 @@
         </div>
     </div>
 
-    {% for item in categories %}
+    <div class="container-fluid">
+        <div
+                class="d-flex align-items-center flex-wrap"
+                style="justify-content: center"
+        >
+            {% for item in categories %}
+                <div class="item zoom-on-hover" style="height: 200px !important;">
+                    <a href="/category/{{ item.slug }}/">
+                        <img class="img-fluid image" src="{{ item.image.url }}"/>
+                        <span class="description">
+          <span class="description-heading">{{ item.name }}</span>
+          <span class="description-body"
+          >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
+            urna.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span
+          >
+        </span>
+                    </a>
+                </div>
 
-        <a href="{% url 'category' item.slug %}"> item1 </a>
-
-    {% endfor %}
-
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}
