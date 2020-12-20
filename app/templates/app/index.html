@@ -1,4 +1,6 @@
-{% extends 'app/base.html' %} {% load static %} {% block additional_head %}
+{% extends 'app/base.html' %}
+{% load static %}
+{% block additional_head %}
     <link rel="stylesheet" href="{% static 'app/gallery.css' %}"/>
 {% endblock additional_head %} {% block content %}
     <div class="container-fluid">
@@ -11,7 +13,7 @@
                 </div>
 
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/sandwitches/">
                         <img
                                 class="img-fluid image"
                                 src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=668&q=80"
@@ -25,7 +27,7 @@
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/fruits/">
                         <img
                                 class="img-fluid image"
                                 src="https://images.unsplash.com/photo-1502865787650-3f8318917153?auto=format&fit=crop&w=668&q=80"
@@ -39,7 +41,7 @@
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/snacks/">
                         <img
                                 class="img-fluid image"
                                 src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80"
@@ -53,7 +55,7 @@
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/chinese_food/">
                         <img
                                 class="img-fluid image"
                                 src="https://www.englishclub.com/images/vocabulary/food/chinese/chinese-food.jpg"
@@ -85,7 +87,7 @@
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/pastry/">
                         <img
                                 class="img-fluid image"
                                 src="https://images.unsplash.com/photo-1500816558239-6b91f4256ead?auto=format&fit=crop&w=668&q=80"
@@ -100,7 +102,7 @@
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/deserts/">
                         <img
                                 class="img-fluid image"
                                 src="https://images.unsplash.com/photo-1505253468034-514d2507d914?auto=format&fit=crop&w=668&q=80"
@@ -132,65 +134,57 @@
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/salads/">
                         <img
                                 class="img-fluid image"
-                                src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=668&q=80"
+                                src="https://ifoodreal.com/wp-content/uploads/2018/06/FG-corn-avocado-salad.jpg"
                         />
                         <span class="description">
-            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-heading">Salads</span>
             <span class="description-body"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit.</span
+            >Fresh vegetables with gentle sauce</span
             >
           </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/seafoods/">
                         <img
                                 class="img-fluid image"
-                                src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80"
+                                src="https://gourmetfood.org/wp-content/uploads/2019/12/Seafood.jpg"
                         />
                         <span class="description">
-            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-heading">Seafood</span>
             <span class="description-body"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit.</span
+            >Gourmet seafood - delivered right to your house!</span
             >
           </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/bbq/">
                         <img
                                 class="img-fluid image"
-                                src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=668&q=80"
+                                src="https://media-cdn.tripadvisor.com/media/photo-s/1a/3f/e0/5c/barbeque-nation-bangalore.jpg"
                         />
                         <span class="description">
-            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-heading">BBQ</span>
             <span class="description-body"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit.</span
+            >Tasty barbeque specials</span
             >
           </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/drinks/">
                         <img
                                 class="img-fluid image"
-                                src="https://images.unsplash.com/photo-1502550900787-e956c314a221?auto=format&fit=crop&w=668&q=80"
+                                src="https://miro.medium.com/max/11520/1*wRSrqe_WdsPsv4XdHDou6Q.jpeg"
                         />
                         <span class="description">
-            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-heading">Drinks</span>
             <span class="description-body"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit.</span
+            >You need a drink? Check out the best deals in the city of Varna</span
             >
           </span>
                     </a>
@@ -199,77 +193,48 @@
 
             <div class="d-flex flex-column" style="max-height: 800px !important">
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/appetizers/">
                         <img
                                 class="img-fluid image"
-                                src="https://images.unsplash.com/photo-1505253468034-514d2507d914?auto=format&fit=crop&w=668&q=80"
+                                src="https://i.pinimg.com/originals/45/5b/7d/455b7d6c10e571243455956967d60b0d.jpg"
                         />
                         <span class="description">
-            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-heading">Appetizers</span>
             <span class="description-body"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit.</span
+            >A pleasure for every taste</span
             >
           </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/wines/">
                         <img
                                 class="img-fluid image"
-                                src="https://images.unsplash.com/photo-1502550900787-e956c314a221?auto=format&fit=crop&w=668&q=80"
+                                src="https://drinksfeed.com/wp-content/blogs.dir/1/files/2018/11/tall-horse-chardonnay-e1542629654320.jpg"
                         />
                         <span class="description">
-            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-heading">Wines</span>
             <span class="description-body"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit.</span
+            >The best selection for your taste</span
             >
           </span>
                     </a>
                 </div>
                 <div class="item zoom-on-hover">
-                    <a href="#">
+                    <a href="/category/chicken/">
                         <img
                                 class="img-fluid image"
-                                src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80"
+                                src="https://www.wallpaperup.com/uploads/wallpapers/2018/03/23/1239149/1b1dca24781f4d058119fe6feea69b46-700.jpg"
                         />
                         <span class="description">
-            <span class="description-heading">Lorem Ipsum</span>
+            <span class="description-heading">Chicken</span>
             <span class="description-body"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              quam urna.Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit.</span
+            >Traditional family chicken</span
             >
           </span>
                     </a>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="container-fluid">
-        <div
-                class="d-flex align-items-center flex-wrap"
-                style="justify-content: center"
-        >
-            {% for item in categories %}
-                <div class="item zoom-on-hover" style="height: 200px !important;">
-                    <a href="/category/{{ item.slug }}/">
-                        <img class="img-fluid image" src="{{ item.image.url }}"/>
-                        <span class="description">
-          <span class="description-heading">{{ item.name }}</span>
-          <span class="description-body"
-          >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
-            urna.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span
-          >
-        </span>
-                    </a>
-                </div>
-
-            {% endfor %}
         </div>
     </div>
 {% endblock content %}

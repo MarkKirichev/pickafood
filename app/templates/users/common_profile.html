@@ -1,5 +1,10 @@
 {% extends 'users/profile.html' %}
 
+{% block additional_head %}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+{% endblock additional_head %}
+
 {% block is_admin %}
 
     {% if orders %}
@@ -23,7 +28,16 @@
                 <!-- <h1>{{ order.order_profile.user.username }}</h1> --->
                 <h4>Order date: {{ order.date }}</h4>
                 <h4>Order time: {{ order.time }}</h4>
-                <a href="#">More details</a>
+                <!--<button onclick="document.getElementById('order-details-{{ forloop.counter }}').style.height = '89px';
+                                 document.getElementById('order-details-{{ forloop.counter }}').style.visibility = 'visible';">More details
+                </button>-->
+                <div id="order-details-{{ forloop.counter }}" class="order-details">
+                    <h6>Number of people for reservations: {{ order.number_of_people }}</h6>
+                    <h6>Name of person in reservation: {{ order.name }} </h6>
+                    <h6>Telephone number in reservation: {{ order.telephone_number }} </h6>
+                    <h6>Email in reservation: {{ order.email }} </h6>
+                    <h6>Restaurant order: {{ order.order_restaurant }} </h6>
+                </div>
 
                 {% for ord in order.orderitem_set.all %}
                     <div>
@@ -37,9 +51,12 @@
                         >Number:{{ ord.number_ordered }}</h6>
                     </div>
                 {% endfor %}
-                <button class="btn btn-danger" href="removeOrder/{{ order.id }}">
+            <a href="{% url 'remove' order.id %}">
+                <button class="btn btn-danger" >
                     Remove Order
                 </button>
+            </a>
+
             </div>
         {% endfor %}
 

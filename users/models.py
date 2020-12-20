@@ -13,7 +13,8 @@ class Profile(models.Model):
         for item in RESTAURANT_NAMES:
             if not self.user.email.__str__().find(item) == -1:
                 is_restaurant_admin_profile = item
-
+                self.user.is_staff = True
+                self.user.save()
                 # print(self.user.email.__str__(), is_admin_profile)
                 return is_restaurant_admin_profile
         return ''

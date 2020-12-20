@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from users.models import Profile
 from .validators import phone_regex
 from .custom_fields import ListField
+from PIL import Image
 
 # WEEKDAYS = [
 #     (1, _("Monday")),

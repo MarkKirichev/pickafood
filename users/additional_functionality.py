@@ -11,7 +11,7 @@ def get_restaurant_name(original_restaurant_name: str):
     return email_restaurant_name.lower()
 
 
-def check_for_everything(json_dict: dict):
+def validate_order_input(json_dict: dict):
     list_items_that_should_be_in_order_dict = [
         'date',
         'time',
@@ -27,8 +27,8 @@ def check_for_everything(json_dict: dict):
         if item in json_dict.keys() and (not json_dict[item] is None):
             counter += 1
 
-    if ('restaurant' in json_dict['cart']
-        and (not json_dict['cart']['restaurant'] is None)):
+    if ('restaurant' in json_dict.keys()
+            and (not json_dict['restaurant'] is None)):
         counter += 1
 
     if len(json_dict['cart']['items']) > 0:

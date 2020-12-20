@@ -9,3 +9,22 @@
 body {
     font-family: 'Montserrat', sans-serif;
 }
+
+.dropdown-item:hover {
+    background-color: lightblue;
+    color: red;
+}
+
+.order-details {
+    display: block;
+    height: 0;
+    visibility: hidden;
+    margin: 20px 0;
+}
+
+.order-details h6 {
+    width: 200px;
+    word-wrap: break-word;
+    font-size: 9px;
+    font-family: 'Lobster', cursive;
+}

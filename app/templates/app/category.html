@@ -17,6 +17,7 @@
             class="d-flex align-items-center flex-wrap"
             style="justify-content: center"
     >
+    {% if categories %}
         {% for item in categories %}
             <div class="card" style="width: 18rem">
                 <img class="card-img-top" src="{{ item.image.url }}" alt="Card image cap"/>
@@ -28,4 +29,8 @@
                 </div>
             </div>
         {% endfor %}
+    {% else %}
+        <h4>Unfortunately, none of our restaurants have foods from this category</h4>
+    {% endif %}
+    </div>
 {% endblock content %}
