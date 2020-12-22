@@ -29,8 +29,8 @@ $(function () {
     }
 
     function updateTotal() {
-        var cartTotal = 0.0
-        for (var itemId in cart.items) {
+        let cartTotal = 0.0
+        for (let itemId in cart.items) {
             if (cart.items.hasOwnProperty(itemId)) {
                 cartTotal += cart.items[itemId].totalPrice
             }
@@ -41,15 +41,15 @@ $(function () {
 
     function createUIItem(itemId) {
         // This function requires cart variable to be properly updated first
-        var cartItemsDiv = $('div#cartModalStep')
+        let cartItemsDiv = $('div#cartModalStep')
         // Init elements
-        var cartItem = $('<div/>', {class: 'cart-item'})
-        var cartItemInput = $('<input>', {
+        let cartItem = $('<div/>', {class: 'cart-item'})
+        let cartItemInput = $('<input>', {
             type: 'hidden',
             class: 'cart-item-id',
             value: itemId
         })
-        var cartItemQty = $('<div/>', {
+        let cartItemQty = $('<div/>', {
             class: 'cart-item-qty'
         }).append([
             $('<span/>', {
@@ -60,13 +60,13 @@ $(function () {
                 text: 'X'
             })
         ])
-        var cartItemNameDiv = $('<div/>', {
+        let cartItemNameDiv = $('<div/>', {
             class: 'cart-item-name'
         }).append($('<span/>', {
             class: 'name',
             text: cart.items[itemId].name
         }))
-        var cartItemQtyButtons = $('<div/>', {
+        let cartItemQtyButtons = $('<div/>', {
             class: 'cart-item-qty-buttons'
         }).append(
             $('<div/>', {
@@ -84,7 +84,7 @@ $(function () {
                 })
             ])
         )
-        var cartItemPrice = $('<div/>', {
+        let cartItemPrice = $('<div/>', {
             class: 'cart-item-price'
         }).append([
             $('<span/>', {
@@ -96,7 +96,7 @@ $(function () {
                 text: cart.items[itemId].currency
             })
         ])
-        var itemDelButton = $('<div/>', {
+        let itemDelButton = $('<div/>', {
             class: 'cart-item-del-button'
         }).append($('<button/>', {
             type: 'button',
@@ -124,7 +124,7 @@ $(function () {
         cart.items[itemId].totalPrice += cart.items[itemId].basePrice
         cart.items[itemId].totalPrice = parseFloat(cart.items[itemId].totalPrice.toFixed(2))
         // Update UI
-        var cartItemDiv = $('div.cart-item :input[class="cart-item-id"]').filter(function () {
+        let cartItemDiv = $('div.cart-item :input[class="cart-item-id"]').filter(function () {
             return this.value === itemId
         }).parents('div.cart-item')[0]
         $(cartItemDiv).find('.cart-item-price > span.price').text(cart.items[itemId].totalPrice.toFixed(2))
